@@ -23,10 +23,10 @@ Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
 
 
 ### Introduction
-
+```bash
  Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
  
- A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
+ The reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
 
 ### Clone and install environment:
@@ -43,22 +43,22 @@ chmod +x install_packages.sh
 bash install_package.sh
 
 ### Required dependencies:
-* Python 3.0+
-* Python modules:
-  * networkx          2.4
-  * tqdm              4.28.1
-  * numpy             1.15.4
-  * pandas            0.23.4
-  * texttable         1.5.0
-  * scipy             1.1.0
-  * argparse          1.1.0
-  * torch             1.1.0
-  * torch-scatter     1.4.0
-  * torch-sparse      0.4.3
-  * torch-cluster     1.4.5
-  * torch-geometric   1.3.2
-  * torchvision       0.3.0
-  * scikit-learn      0.20.0
+Python 3.0+
+  Python modules:
+  networkx          2.4
+  tqdm              4.28.1
+  numpy             1.15.4
+  pandas            0.23.4
+  texttable         1.5.0
+  scipy             1.1.0
+  argparse          1.1.0
+  torch             1.1.0
+  torch-scatter     1.4.0
+  torch-sparse      0.4.3
+  torch-cluster     1.4.5
+  torch-geometric   1.3.2
+  torchvision       0.3.0
+  scikit-learn      0.20.0
 ---
 ```
 ### Install from PyPI with pip:
