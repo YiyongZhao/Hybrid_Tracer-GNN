@@ -80,7 +80,7 @@ Every JSON file has the following key-value structure:
 <p align="justify">
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is the raw graph edit distance for the pair of graphs.</p>
 
-### Example input files for multiple sequence alignment
+### Example input format of multiple sequence alignment
 ```
 -----------MSA.fas-----------------------------------------------------------------------------------
 >sps1
@@ -113,7 +113,7 @@ Training a GNN model is handled by the `src/main.py` script which provides the f
   --bottle-neck-neurons   INT         Bottle neck layer neurons.               Default is 16.
   --bins                  INT         Number of histogram bins.                Default is 16.
   --batch-size            INT         Number of pairs processed per batch.     Default is 128. 
-  --epochs                INT         Number of GNN training epochs.        Default is 5.
+  --epochs                INT         Number of GNN training epochs.           Default is 5.
   --dropout               FLOAT       Dropout rate.                            Default is 0.5.
   --learning-rate         FLOAT       Learning rate.                           Default is 0.001.
   --weight-decay          FLOAT       Weight decay.                            Default is 10^-5.
