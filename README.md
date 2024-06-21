@@ -65,8 +65,8 @@ Python 3.0+
 pip install PhyloTracer
 ```
 
-## Usage
-### Datasets
+## Usage 
+### Datasets for GNN trainning
 <p align="justify">
 The code takes pairs of graphs for training from an input folder where each pair of graph is stored as a JSON. Pairs of graphs used for testing are also stored as JSON files. Every node id and node label has to be indexed from 0. Keys of dictionaries are stored strings in order to make JSON serialization possible.</p>
 
@@ -80,9 +80,20 @@ Every JSON file has the following key-value structure:
 <p align="justify">
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is the raw graph edit distance for the pair of graphs.</p>
 
-## Example input files
+### Example input files for prediction
 ```
 -----------MSA.fas--------------------------------------------------------------------------------------------------------
+>sps1
+GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
+>sps2
+GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
+>sample3
+GAC-TTAGT-CTGATACTGATGAGGTTCCTT
+>sps4
+GAC-TTAGTACTGATAC-ATTAGGTTCCTC
+>sps5
+GAACTGAGTACTGATACTGATTAGGTTCCTT
+
 ```
 
 ### Options
