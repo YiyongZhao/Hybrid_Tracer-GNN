@@ -19,15 +19,14 @@
 [![PyPI](https://img.shields.io/pypi/v/Hybrid_Tracer-GNN.svg)](https://pypi.python.org/pypi/Hybrid_Tracer-GNN)
 
 ---
-#  Hybrid_Tracer-GNN
+#  Introduction
 
  Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
- A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
-
+ 
 ---
-## Introduction
+## Feature
 
-` Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
 ---
 ### Clone and install environment:
