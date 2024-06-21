@@ -87,7 +87,7 @@ The **graph_1** keys have edge list values which descibe the connectivity struct
 GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
 >sps2
 GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
->sample3
+>sps3
 GAC-TTAGT-CTGATACTGATGAGGTTCCTT
 >sps4
 GAC-TTAGTACTGATAC-ATTAGGTTCCTC
