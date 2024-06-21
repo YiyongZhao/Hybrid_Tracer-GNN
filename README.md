@@ -38,6 +38,10 @@ cd Hybrid_Tracer-GNN
 conda env create -f environment.yml
 conda activate Hybrid_Tracer-GNN
 
+#Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
+chmod +x install_packages.sh
+bash install_package.sh
+
 ### Required dependencies:
 * Python 3.0+
 * Python modules:
@@ -55,10 +59,6 @@ conda activate Hybrid_Tracer-GNN
   * torch-geometric   1.3.2
   * torchvision       0.3.0
   * scikit-learn      0.20.0
-
-#Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
-chmod +x install_packages.sh
-bash install_package.sh
 ---
 ```
 ### Install from PyPI with pip:
