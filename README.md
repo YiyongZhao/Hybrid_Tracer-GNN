@@ -8,8 +8,8 @@
 ██║  ██║   ██║   ██████╔╝██║  ██║██║██████╔╝   ██║   ██║  ██║██║  ██║╚██████╗███████╗██║  ██║      ╚██████╔╝██║ ╚████║██║ ╚████║
 ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝                                                                                                                                                                                                                     
 HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.                                                                   
-Pypi: https://pypi.org/project/Hybrid_Tracer-GNN                                               
-Github: https://github.com/YiyongZhao/Hybrid_Tracer-GNN                                        
+Pypi: https://pypi.org/project/HybridTracer-GNN                                               
+Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
 Licence: MIT license                                                                     
 Release Date: 2024-7                                                                     
 Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
@@ -18,13 +18,13 @@ Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
 ```
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 [![Documentation Status](http://readthedocs.org/projects/hybridization-detection/badge/?version=latest)](http://hybridization-detection.readthedocs.io)
-[![Hybrid_Tracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues)
-![Build Status](https://travis-ci.org/YiyongZhao/Hybrid_Tracer-GNN.svg?branch=master)
-[![PyPI](https://img.shields.io/pypi/v/Hybrid_Tracer-GNN.svg)](https://pypi.python.org/pypi/Hybrid_Tracer-GNN)
+[![HybridTracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/HybridTracer-GNN/issues)
+![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
 
 
 ### Introduction
-Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
 The reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
 
@@ -32,10 +32,10 @@ The reference Tensorflow implementation is accessible [[here]](https://github.co
 
 ```bash
 #A convenient one-click installation by using conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) with the following commands:
-git clone https://github.com/YiyongZhao/Hybrid_Tracer-GNN.git
-cd Hybrid_Tracer-GNN
+git clone https://github.com/YiyongZhao/HybridTracer-GNN.git
+cd HybridTracer-GNN
 conda env create -f environment.yml
-conda activate Hybrid_Tracer-GNN
+conda activate HybridTracer-GNN
 
 #Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
 chmod +x install_packages.sh
@@ -157,16 +157,16 @@ python src/main.py --load-path /path/to/model-name
 
 
 ## Bug Reports
-You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
+You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/HybridTracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
 
 ## Contributing
 If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve HybridTracer-GNN! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
 
 ## Version History
-Check the [Changelog](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/commits/Hybrid_Tracer-GNN_v1.0.0) for details on different versions and updates.
+Check the [Changelog](https://github.com/YiyongZhao/HybridTracer-GNN/commits/HybridTracer-GNN_v1.0.0) for details on different versions and updates.
 
 ## License
-Hybrid_Tracer-GNN  is licensed under the [MIT LICENSE](LICENSE).
+HybridTracer-GNN  is licensed under the [MIT LICENSE](LICENSE).
 
 
 
