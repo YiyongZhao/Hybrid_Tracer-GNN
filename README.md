@@ -62,7 +62,7 @@ Python 3.0+
 ### Install from PyPI with pip:
 
 ```bash
-pip install PhyloTracer
+pip install HybridTracer-GNN
 ```
 
 ## Usage 
@@ -160,7 +160,7 @@ python src/main.py --load-path /path/to/model-name
 You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
 
 ## Contributing
-If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve PhyloTracer! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
+If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve HybridTracer-GNN! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
 
 ## Version History
 Check the [Changelog](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/commits/Hybrid_Tracer-GNN_v1.0.0) for details on different versions and updates.
