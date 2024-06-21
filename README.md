@@ -14,8 +14,8 @@
 ```
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 [![Documentation Status](http://readthedocs.org/projects/hybridization-detection/badge/?version=latest)](http://hybridization-detection.readthedocs.io)
-[![PhyloTracer Issues](https://img.shields.io/badge/PhyloTracer-Issues-blue.svg)](https://github.com/YiyongZhao/PhyloTracer/issues)
-![Build Status](https://travis-ci.org/YiyongZhao/PhyloTracer.svg?branch=master)
+[![PhyloTracer Issues](https://img.shields.io/badge/Hybrid_Tracer-GNN-Issues-blue.svg)](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues)
+![Build Status](https://travis-ci.org/YiyongZhao/Hybrid_Tracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/Hybrid_Tracer-GNN.svg)](https://pypi.python.org/pypi/Hybrid_Tracer-GNN)
 
 ---
