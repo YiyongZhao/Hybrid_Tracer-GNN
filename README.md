@@ -1,24 +1,95 @@
+```
+###############################################################################################              
+                                                                                             
+   Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+                                                                                             
+    Pypi: https://pypi.org/project/Hybrid_Tracer-GNN                                               
+    Github: https://github.com/YiyongZhao/Hybrid_Tracer-GNN                                        
+    Licence: MIT license                                                                     
+    Release Date: 2024-7                                                                     
+    Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
+                                                                         
+###############################################################################################
+```
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+[![Documentation Status](http://readthedocs.org/projects/hybridization-detection/badge/?version=latest)](http://hybridization-detection.readthedocs.io)
+[![PhyloTracer Issues](https://img.shields.io/badge/PhyloTracer-Issues-blue.svg)](https://github.com/YiyongZhao/PhyloTracer/issues)
+![Build Status](https://travis-ci.org/YiyongZhao/PhyloTracer.svg?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/PhyloTracer.svg)](https://pypi.python.org/pypi/PhyloTracer)
 
+---
+#  Hybrid_Tracer-GNN
+
+ Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+
+---
+## Introduction
+
+` Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+
+---
+### Clone and install environment:
+
+```bash
+#A convenient one-click installation by using conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) with the following commands:
+git clone https://github.com/YiyongZhao/PhyloTracer.git
+cd PhyloTracer
+conda env create -f environment.yml
+conda activate phylotracer
+
+#Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
+chmod +x install_packages.sh
+bash install_package.sh
+
+#Reminder for potential visualization issues: qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found and this application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+#Alternative available platform plugins include: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-#egl, wayland-xcomposite-glx, webgl, xcb. before running PhyloTracer, please execute the following bash command:
+export QT_QPA_PLATFORM=linuxfb
+```
+---
+### Install from PyPI with pip:
+
+```bash
+pip install PhyloTracer
+```
+---
+## Features
+* Incorporating the principles of maximizing the outgroup depth score, minimizing the Robinson-Foulds (RF) distance, reducing the variance in ingroup branch lengths, and maximizing the overlap ratio of gene duplication species enhances the accuracy of root determination.   
+* Introducing the concept of long-branch genes for noise filtration in gene trees.   
+* Introducing the concept of inserted genes for monophyletic filtering in single-copy gene trees.   
+---
+## Installation
+
+### Required dependencies:
 A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
-### Requirements
-The codebase is implemented in Python 3.5.2. package versions used for development are just below.
+* Python 3.0+
+* Python modules:
+  * networkx          2.4
+  * tqdm              4.28.1
+  * numpy             1.15.4
+  * pandas            0.23.4
+  * texttable         1.5.0
+  * scipy             1.1.0
+  * argparse          1.1.0
+  * torch             1.1.0
+  * torch-scatter     1.4.0
+  * torch-sparse      0.4.3
+  * torch-cluster     1.4.5
+  * torch-geometric   1.3.2
+  * torchvision       0.3.0
+  * scikit-learn      0.20.0
+
+
+---
+## Example input files
 ```
-networkx          2.4
-tqdm              4.28.1
-numpy             1.15.4
-pandas            0.23.4
-texttable         1.5.0
-scipy             1.1.0
-argparse          1.1.0
-torch             1.1.0
-torch-scatter     1.4.0
-torch-sparse      0.4.3
-torch-cluster     1.4.5
-torch-geometric   1.3.2
-torchvision       0.3.0
-scikit-learn      0.20.0
+-----------MSA.fas--------------------------------------------------------------------------------------------------------
+
+
+
 ```
+---
+## Usage
 ### Datasets
 <p align="justify">
 The code takes pairs of graphs for training from an input folder where each pair of graph is stored as a JSON. Pairs of graphs used for testing are also stored as JSON files. Every node id and node label has to be indexed from 0. Keys of dictionaries are stored strings in order to make JSON serialization possible.</p>
@@ -92,7 +163,23 @@ Then you can load a pretrained model using the `--load-path` parameter; **note t
 python src/main.py --load-path /path/to/model-name
 ```
 ----------------------------------------------------------------------
+```
 
-**License**
+## Bug Reports
 
-- [GNU]()
+You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/PhyloTracer/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
+
+## Contributing
+
+If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve PhyloTracer! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
+
+## Version History
+
+Check the [Changelog](https://github.com/YiyongZhao/PhyloTracer/commits/PhyloTracer_v1.0.0) for details on different versions and updates.
+
+## License
+
+Hybrid_Tracer-GNN  is licensed under the [MIT LICENSE](LICENSE).
+
+
+
