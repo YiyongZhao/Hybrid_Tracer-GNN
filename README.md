@@ -1,7 +1,8 @@
 ```
 ###############################################################################################              
                                                                                              
-   Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+   Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with
+   fast graph similarity computation neural network.
                                                                                              
     Pypi: https://pypi.org/project/Hybrid_Tracer-GNN                                               
     Github: https://github.com/YiyongZhao/Hybrid_Tracer-GNN                                        
