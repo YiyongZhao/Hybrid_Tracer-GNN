@@ -15,12 +15,13 @@
 [![Documentation Status](http://readthedocs.org/projects/hybridization-detection/badge/?version=latest)](http://hybridization-detection.readthedocs.io)
 [![PhyloTracer Issues](https://img.shields.io/badge/PhyloTracer-Issues-blue.svg)](https://github.com/YiyongZhao/PhyloTracer/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/PhyloTracer.svg?branch=master)
-[![PyPI](https://img.shields.io/pypi/v/PhyloTracer.svg)](https://pypi.python.org/pypi/PhyloTracer)
+[![PyPI](https://img.shields.io/pypi/v/Hybrid_Tracer-GNN.svg)](https://pypi.python.org/pypi/Hybrid_Tracer-GNN)
 
 ---
 #  Hybrid_Tracer-GNN
 
  Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+ A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
 ---
 ## Introduction
@@ -32,36 +33,12 @@
 
 ```bash
 #A convenient one-click installation by using conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) with the following commands:
-git clone https://github.com/YiyongZhao/PhyloTracer.git
-cd PhyloTracer
+git clone https://github.com/YiyongZhao/Hybrid_Tracer-GNN.git
+cd Hybrid_Tracer-GNN
 conda env create -f environment.yml
-conda activate phylotracer
-
-#Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
-chmod +x install_packages.sh
-bash install_package.sh
-
-#Reminder for potential visualization issues: qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found and this application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
-#Alternative available platform plugins include: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-#egl, wayland-xcomposite-glx, webgl, xcb. before running PhyloTracer, please execute the following bash command:
-export QT_QPA_PLATFORM=linuxfb
-```
----
-### Install from PyPI with pip:
-
-```bash
-pip install PhyloTracer
-```
----
-## Features
-* Incorporating the principles of maximizing the outgroup depth score, minimizing the Robinson-Foulds (RF) distance, reducing the variance in ingroup branch lengths, and maximizing the overlap ratio of gene duplication species enhances the accuracy of root determination.   
-* Introducing the concept of long-branch genes for noise filtration in gene trees.   
-* Introducing the concept of inserted genes for monophyletic filtering in single-copy gene trees.   
----
-## Installation
+conda activate Hybrid_Tracer-GNN
 
 ### Required dependencies:
-A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
-
 * Python 3.0+
 * Python modules:
   * networkx          2.4
@@ -79,16 +56,17 @@ A reference Tensorflow implementation is accessible [[here]](https://github.com/
   * torchvision       0.3.0
   * scikit-learn      0.20.0
 
-
----
-## Example input files
-```
------------MSA.fas--------------------------------------------------------------------------------------------------------
-
-
+#Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
+chmod +x install_packages.sh
+bash install_package.sh
 
 ```
----
+### Install from PyPI with pip:
+
+```bash
+pip install PhyloTracer
+```
+
 ## Usage
 ### Datasets
 <p align="justify">
@@ -103,6 +81,11 @@ Every JSON file has the following key-value structure:
 ```
 <p align="justify">
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is the raw graph edit distance for the pair of graphs.</p>
+
+## Example input files
+```
+-----------MSA.fas--------------------------------------------------------------------------------------------------------
+```
 
 ### Options
 <p align="justify">
@@ -162,23 +145,18 @@ Then you can load a pretrained model using the `--load-path` parameter; **note t
 ```
 python src/main.py --load-path /path/to/model-name
 ```
-----------------------------------------------------------------------
-```
+
 
 ## Bug Reports
-
 You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/PhyloTracer/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
 
 ## Contributing
-
 If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve PhyloTracer! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
 
 ## Version History
-
 Check the [Changelog](https://github.com/YiyongZhao/PhyloTracer/commits/PhyloTracer_v1.0.0) for details on different versions and updates.
 
 ## License
-
 Hybrid_Tracer-GNN  is licensed under the [MIT LICENSE](LICENSE).
 
 
