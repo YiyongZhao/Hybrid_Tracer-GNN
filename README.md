@@ -37,8 +37,7 @@ git clone https://github.com/YiyongZhao/Hybrid_Tracer-GNN.git
 cd Hybrid_Tracer-GNN
 conda env create -f environment.yml
 conda activate Hybrid_Tracer-GNN
-```
----
+
 ### Required dependencies:
 * Python 3.0+
 * Python modules:
