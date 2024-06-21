@@ -20,17 +20,15 @@ Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
 [![Hybrid_Tracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/Hybrid_Tracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/Hybrid_Tracer-GNN.svg)](https://pypi.python.org/pypi/Hybrid_Tracer-GNN)
----
-## Introduction
+
+
+### Introduction
 
  Hybrid_Tracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
  
----
-## Feature
+ A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
-A reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
 
----
 ### Clone and install environment:
 
 ```bash
