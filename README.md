@@ -1,21 +1,17 @@
 ```
 ###############################################################################################
-
 ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗██████╗ ████████╗██████╗  █████╗  ██████╗███████╗██████╗        ██████╗ ███╗   ██╗███╗   ██╗
 ██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗      ██╔════╝ ████╗  ██║████╗  ██║
 ███████║ ╚████╔╝ ██████╔╝██████╔╝██║██║  ██║   ██║   ██████╔╝███████║██║     █████╗  ██████╔╝█████╗██║  ███╗██╔██╗ ██║██╔██╗ ██║
 ██╔══██║  ╚██╔╝  ██╔══██╗██╔══██╗██║██║  ██║   ██║   ██╔══██╗██╔══██║██║     ██╔══╝  ██╔══██╗╚════╝██║   ██║██║╚██╗██║██║╚██╗██║
 ██║  ██║   ██║   ██████╔╝██║  ██║██║██████╔╝   ██║   ██║  ██║██║  ██║╚██████╗███████╗██║  ██║      ╚██████╔╝██║ ╚████║██║ ╚████║
-╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝
-                                                                                                                                                                                              
-   HybridTracer-GNN enables inference of hybrid speciation and admixture with
-   fast graph similarity computation neural network.
-                                                                              
-    Pypi: https://pypi.org/project/Hybrid_Tracer-GNN                                               
-    Github: https://github.com/YiyongZhao/Hybrid_Tracer-GNN                                        
-    Licence: MIT license                                                                     
-    Release Date: 2024-7                                                                     
-    Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
+╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝                                                                                                                                                                                                                     
+HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.                                                                   
+Pypi: https://pypi.org/project/Hybrid_Tracer-GNN                                               
+Github: https://github.com/YiyongZhao/Hybrid_Tracer-GNN                                        
+Licence: MIT license                                                                     
+Release Date: 2024-7                                                                     
+Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
                                                                          
 ###############################################################################################
 ```
