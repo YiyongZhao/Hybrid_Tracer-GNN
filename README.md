@@ -1,5 +1,6 @@
 ```
 ###############################################################################################
+
 ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗██████╗ ████████╗██████╗  █████╗  ██████╗███████╗██████╗        ██████╗ ███╗   ██╗███╗   ██╗
 ██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗      ██╔════╝ ████╗  ██║████╗  ██║
 ███████║ ╚████╔╝ ██████╔╝██████╔╝██║██║  ██║   ██║   ██████╔╝███████║██║     █████╗  ██████╔╝█████╗██║  ███╗██╔██╗ ██║██╔██╗ ██║
@@ -40,7 +41,7 @@ conda activate Hybrid_Tracer-GNN
 chmod +x install_packages.sh
 bash install_package.sh
 
-### Required dependencies:
+#Required dependencies:
 Python 3.0+
   Python modules:
   networkx          2.4
@@ -57,7 +58,6 @@ Python 3.0+
   torch-geometric   1.3.2
   torchvision       0.3.0
   scikit-learn      0.20.0
----
 ```
 ### Install from PyPI with pip:
 
@@ -80,9 +80,9 @@ Every JSON file has the following key-value structure:
 <p align="justify">
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is the raw graph edit distance for the pair of graphs.</p>
 
-### Example input files for prediction
+### Example input files for multiple sequence alignment
 ```
------------MSA.fas--------------------------------------------------------------------------------------------------------
+-----------MSA.fas-----------------------------------------------------------------------------------
 >sps1
 GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
 >sps2
