@@ -12,7 +12,7 @@ Pypi: https://pypi.org/project/HybridTracer-GNN
 Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
 Licence: MIT license                                                                     
 Release Date: 2024-7                                                                     
-Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
+Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.com)
                                                                          
 ###############################################################################################
 ```
@@ -21,11 +21,14 @@ Contacts: Xinzheng Du(XXX); Yiyong Zhao(yiyongzhao1991@gmail.com)
 [![HybridTracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/HybridTracer-GNN/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
-
+<p align="center">
+  <img width="800" src="hybgnn.jpg">
+</p>
 
 ### Introduction
 HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
-The reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN).
+This work is implemented by Pytorch.
+The reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN) for your information.
 
 
 ### Clone and install environment:
@@ -68,33 +71,52 @@ pip install HybridTracer-GNN
 ## Usage 
 ### Datasets for GNN trainning
 <p align="justify">
-The code takes pairs of graphs for training from an input folder where each pair of graph is stored as a JSON. Pairs of graphs used for testing are also stored as JSON files. Every node id and node label has to be indexed from 0. Keys of dictionaries are stored strings in order to make JSON serialization possible.</p>
+Every MSA file is ultimately stored as JSONs, which are essentially multiple graphs. Each node ID and node label must be indexed from 0 to 14, corresponding to the 15 patterns indicated in the table below:
+| **Pattern** | **Node ID** |
+|:-------------| :------------:|
+| AAAA | 0 |
+| AAAD | 1 |
+| AACA | 2 |
+| AACC | 3 |
+| AABD | 4 |
+| ABAA | 5 |
+| ABAB | 6 |
+| ABAD | 7 |
+| ABBA | 8 |
+| ABBB | 9 |
+| ABBD | 10 |
+| ABCA | 11 |
+| ABCB | 12 |
+| ABCC | 13 |
+| ABCD | 14 |
+</p>
 
 Every JSON file has the following key-value structure:
 
 ```javascript
 {"graph_1": [[0, 1], [1, 2], [2, 3], [3, 4]],
- "labels_1": [2, 2, 2, 2, 2],
- "ged": 1}
+ "labels_1": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+ "ged": 2}
 ```
 <p align="justify">
-The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is the raw graph edit distance for the pair of graphs.</p>
+The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is hybrid attribute value, in our example 2 = Hybird, 4 = Admixture, 6 = Admix with gene flow, 8 = No hybird.</p>
 
 ### Example input format of multiple sequence alignment
 ```
------------MSA.fas-----------------------------------------------------------------------------------
->sps1
-GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
->sps2
-GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
->sps3
-GAC-TTAGT-CTGATACTGATGAGGTTCCTT
->sps4
-GAC-TTAGTACTGATAC-ATTAGGTTCCTC
->sps5
-GAACTGAGTACTGATACTGATTAGGTTCCTT
+If you want to quickly start, place your files with the ".phy" extension into the "phy" folder. Format your ".phy" files as shown in the following example. Please note that the length of sequence names can vary, and each line must be arranged in the format of : "sequence name" + "\t" + "sequence". Each sequence must have the same length.
+
+-----------MSA.phy-----------------------------------------------------------------------------------
+sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
+sps2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
+sps3	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
+sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTC
+...
+...
+spsNGAACTGAGTACTGATACTGATTAGGTTCCTT
 
 ```
+
+
 
 ### Options
 <p align="justify">
@@ -105,6 +127,7 @@ Training a GNN model is handled by the `src/main.py` script which provides the f
   --training-graphs   STR    Training graphs folder.      Default is `dataset/train/`.
   --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
 ```
+Please note that the trainset and testset folder must end with "/" !
 #### Model options
 ```
   --filters-1             INT         Number of filter in 1st GCN layer.       Default is 128.
@@ -121,6 +144,14 @@ Training a GNN model is handled by the `src/main.py` script which provides the f
 ```
 ### Examples
 <p align="justify">
+To run it quickly, after input your ".phy" files to "phy" folder, run example.py.
+
+```
+python3 example.py
+```
+
+If you want train your own model:
+
 The following commands learn a neural network and score on the test set. Training a GNN model on the default dataset.</p>
 
 ```
@@ -154,6 +185,9 @@ Then you can load a pretrained model using the `--load-path` parameter; **note t
 ```
 python src/main.py --load-path /path/to/model-name
 ```
+
+
+Code Framework Reference: [SimGNN](https://github.com/benedekrozemberczki/SimGNN)
 
 
 ## Bug Reports
