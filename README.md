@@ -70,8 +70,9 @@ pip install HybridTracer-GNN
 
 ## Usage 
 ### Datasets for GNN trainning
-<p align="justify">
+
 Every MSA file is ultimately stored as JSONs, which are essentially multiple graphs. Each node ID and node label must be indexed from 0 to 14, corresponding to the 15 patterns indicated in the table below:
+
 | **Pattern** | **Node ID** |
 |:-------------| :------------:|
 | AAAA | 0 |
@@ -89,7 +90,7 @@ Every MSA file is ultimately stored as JSONs, which are essentially multiple gra
 | ABCB | 12 |
 | ABCC | 13 |
 | ABCD | 14 |
-</p>
+
 
 Every JSON file has the following key-value structure:
 
