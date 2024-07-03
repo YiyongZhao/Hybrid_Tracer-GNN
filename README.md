@@ -103,9 +103,9 @@ Every JSON file has the following key-value structure:
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is hybrid attribute value, in our example 2 = Hybird, 4 = Admixture, 6 = Admix with gene flow, 8 = No hybird.</p>
 
 ### Example input format of multiple sequence alignment
-```
-If you want to quickly start, place your files with the ".phy" extension into the "phy" folder. Format your ".phy" files as shown in the following example. Please note that the length of sequence names can vary, and each line must be arranged in the format of : "sequence name" + "\t" + "sequence". Each sequence must have the same length.
 
+If you want to quickly start, place your files with the ".phy" extension into the "phy" folder. Format your ".phy" files as shown in the following example. Please note that the length of sequence names can vary, and each line must be arranged in the format of : "sequence name" + "\t" + "sequence". Each sequence must have the same length.
+```
 -----------MSA.phy-----------------------------------------------------------------------------------
 sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
 sps2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
@@ -113,7 +113,7 @@ sps3	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
 sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTC
 ...
 ...
-spsNGAACTGAGTACTGATACTGATTAGGTTCCTT
+spsN	GAACTGAGTACTGATACTGATTAGGTTCCTT
 
 ```
 
@@ -128,7 +128,7 @@ Training a GNN model is handled by the `src/main.py` script which provides the f
   --training-graphs   STR    Training graphs folder.      Default is `dataset/train/`.
   --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
 ```
-Please note that the trainset and testset folder must end with "/" !
+Please **note that the trainset and testset folder must end with "/" !**
 #### Model options
 ```
   --filters-1             INT         Number of filter in 1st GCN layer.       Default is 128.
@@ -145,10 +145,16 @@ Please note that the trainset and testset folder must end with "/" !
 ```
 ### Examples
 <p align="justify">
-To run it quickly, after input your ".phy" files to "phy" folder, run example.py.
+To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
 
 ```
 python3 example.py
+```
+
+We **strongly recommend** placing the outgroup as the first line in the ".phy" file if you can identify which one is the outgroup, then run "outgroup.py" instead of running "example.py".
+
+```
+python3 outgroup.py
 ```
 
 If you want train your own model:
