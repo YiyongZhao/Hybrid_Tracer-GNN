@@ -1,1 +1,0 @@
-sudo python3 src/main.py --load-path new2-001-his16-e15-32-512noabs.pt  --learning-rate 0.001 --dropout 0.8 --epochs 15 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16  
