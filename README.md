@@ -7,12 +7,12 @@
 ██╔══██║  ╚██╔╝  ██╔══██╗██╔══██╗██║██║  ██║   ██║   ██╔══██╗██╔══██║██║     ██╔══╝  ██╔══██╗╚════╝██║   ██║██║╚██╗██║██║╚██╗██║
 ██║  ██║   ██║   ██████╔╝██║  ██║██║██████╔╝   ██║   ██║  ██║██║  ██║╚██████╗███████╗██║  ██║      ╚██████╔╝██║ ╚████║██║ ╚████║
 ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝                                                                                                                                                                                                                     
-HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.                                                                   
+HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph neural network.                                                                   
 Pypi: https://pypi.org/project/HybridTracer-GNN                                               
 Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
 Licence: MIT license                                                                     
 Release Date: 2024-7                                                                     
-Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.com)
+**Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.com)**
                                                                          
 ###############################################################################################
 ```
@@ -26,7 +26,7 @@ Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.co
 </p>
 
 ### Introduction
-HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph similarity computation neural network.
+HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph neural network.
 This work is implemented by Pytorch.
 The reference Tensorflow implementation is accessible [[here]](https://github.com/yunshengb/GNN) and another implementation is [[here]](https://github.com/NightlyJourney/GNN) for your information.
 
@@ -118,31 +118,6 @@ spsN	GAACTGAGTACTGATACTGATTAGGTTCCTT
 ```
 
 
-
-### Options
-<p align="justify">
-Training a GNN model is handled by the `src/main.py` script which provides the following command line arguments.</p>
-
-#### Input and output options
-```
-  --training-graphs   STR    Training graphs folder.      Default is `dataset/train/`.
-  --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
-```
-Please **note that the trainset and testset folder must end with "/" !**
-#### Model options
-```
-  --filters-1             INT         Number of filter in 1st GCN layer.       Default is 128.
-  --filters-2             INT         Number of filter in 2nd GCN layer.       Default is 64. 
-  --filters-3             INT         Number of filter in 3rd GCN layer.       Default is 32.
-  --bottle-neck-neurons   INT         Bottle neck layer neurons.               Default is 16.
-  --bins                  INT         Number of histogram bins.                Default is 16.
-  --batch-size            INT         Number of pairs processed per batch.     Default is 128. 
-  --epochs                INT         Number of GNN training epochs.           Default is 5.
-  --dropout               FLOAT       Dropout rate.                            Default is 0.5.
-  --learning-rate         FLOAT       Learning rate.                           Default is 0.001.
-  --weight-decay          FLOAT       Weight decay.                            Default is 10^-5.
-  --histogram             BOOL        Include histogram features.              Default is False.
-```
 ### Examples
 <p align="justify">
 To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
@@ -193,6 +168,34 @@ Then you can load a pretrained model using the `--load-path` parameter; **note t
 python src/main.py --load-path /path/to/model-name
 ```
 
+### Options
+<p align="justify">
+Training a GNN model is handled by the `src/main.py` script which provides the following command line arguments.</p>
+
+#### Input and output options
+```
+  --training-graphs   STR    Training graphs folder.      Default is `dataset/train/`.
+  --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
+```
+Please **note that the trainset and testset folder must end with "/" !**
+#### Model options
+```
+  --filters-1             INT         Number of filter in 1st GCN layer.       Default is 128.
+  --filters-2             INT         Number of filter in 2nd GCN layer.       Default is 64. 
+  --filters-3             INT         Number of filter in 3rd GCN layer.       Default is 32.
+  --bottle-neck-neurons   INT         Bottle neck layer neurons.               Default is 16.
+  --bins                  INT         Number of histogram bins.                Default is 16.
+  --batch-size            INT         Number of pairs processed per batch.     Default is 128. 
+  --epochs                INT         Number of GNN training epochs.           Default is 5.
+  --dropout               FLOAT       Dropout rate.                            Default is 0.5.
+  --learning-rate         FLOAT       Learning rate.                           Default is 0.001.
+  --weight-decay          FLOAT       Weight decay.                            Default is 10^-5.
+  --histogram             BOOL        Include histogram features.              Default is False.
+```
+
+### Output
+<p align="justify">
+The output files default to being saved in the "outputfiles" folder, which records the probabilities of hybridization, admixture, admixture with gene flow, and no hybridization events. In cases where hybridization occurs, an additional "*_gamma.log" files are generated, containing records of gamma values.
 
 Code Framework Reference: [SimGNN](https://github.com/benedekrozemberczki/SimGNN)
 
