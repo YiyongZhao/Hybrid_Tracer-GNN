@@ -149,7 +149,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
 
     print("GNN ing")
 
-    command = f"python3 ./src4types/main.py --load-path ./4typesreal-4000-initial-001-his16-e10-32-512abs.pt --learning-rate 0.001 --dropout 0.8 --epochs 10 --batch-size 512 --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/train/ --testing-graphs {output_dir}/ >{log_dir}/{logname}.log"
+    command = f"python3 src2types/main.py --load-path ./2typesandreal-ind-001-his16-e5-32-512abs.pt  --learning-rate 0.001 --dropout 0.2 --epochs 5 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/2types_indandreal/train/ --testing-graphs {output_dir}/ >{log_dir}/{logname}.log"
     os.system(command)
     print(f'End of generating log {logname}')
 
@@ -274,7 +274,7 @@ for phy_file in phy_files:
             |
                             """)
                             # Using GNN to get Gamma
-                            command = f"sudo python3 srcgamma/main.py --load-path ./gamma-001-his16-e10-32-512abs.pt  --learning-rate 0.001 --dropout 0.8 --epochs 10 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/train/ --testing-graphs {output_json_dir}/ >{output_folder}/{file_name}_gamma.log"
+                            command = f"sudo python3 srcgamma/main.py --load-path ./gamma-001-his16-e10-32-512abs.pt  --learning-rate 0.001 --dropout 0.8 --epochs 10 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/gamma/train/ --testing-graphs {output_json_dir}/ >{output_folder}/{file_name}_gamma.log"
                             os.system(command)
                             gamma_path = os.path.join(output_folder, f'{file_name}_gamma.log')
                             with open(gamma_path, 'r') as f:
