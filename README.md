@@ -12,7 +12,7 @@ Pypi: https://pypi.org/project/HybridTracer-GNN
 Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
 Licence: MIT license                                                                     
 Release Date: 2024-7                                                                     
-**Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.com)**
+Contacts: Xinzheng Du(**duxz@xiaohuafund.com**); Yiyong Zhao(**yiyongzhao1991@gmail.com**)
                                                                          
 ###############################################################################################
 ```
