@@ -7,7 +7,7 @@
 ██╔══██║  ╚██╔╝  ██╔══██╗██╔══██╗██║██║  ██║   ██║   ██╔══██╗██╔══██║██║     ██╔══╝  ██╔══██╗╚════╝██║   ██║██║╚██╗██║██║╚██╗██║
 ██║  ██║   ██║   ██████╔╝██║  ██║██║██████╔╝   ██║   ██║  ██║██║  ██║╚██████╗███████╗██║  ██║      ╚██████╔╝██║ ╚████║██║ ╚████║
 ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝                         ###############################################################################################                                                                                                                                                                                     
-HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph neural network.                                                                   
+###HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph neural network.                                                                   
 Pypi: https://pypi.org/project/HybridTracer-GNN                                               
 Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
 Licence: MIT license                                                                     
