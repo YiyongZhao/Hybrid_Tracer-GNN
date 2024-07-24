@@ -22,7 +22,7 @@ Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.co
 ![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
 <p align="center">
-  <img width="800" src="hybgnn.jpg">
+  <img width="800" src="image/hybgnn.jpg">
 </p>
 
 ### Introduction
