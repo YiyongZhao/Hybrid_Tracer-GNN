@@ -69,9 +69,7 @@ pip install HybridTracer-GNN
 ```
 ## Usage 
 ### Datasets for GNN trainning
-[JSON](https://www.json.org/json-en.html) (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate.
-Every MSA file is ultimately stored as JSONs, which are essentially multiple graphs. Each node ID and node label must be indexed from 0 to 14, corresponding to the 15 patterns indicated in the table below:
-
+[JSON](https://www.json.org/json-en.html) (JavaScript Object Notation) is a lightweight data-interchange format that is both human-readable and machine-parsable, facilitating straightforward data exchange. Each MSA (Multiple Sequence Alignment) file is stored in JSON format, represented as a collection of graphs. In these graphs, each node ID and node label are indexed from 0 to 14, corresponding to the 15 patterns specified in the table below:
 | **Pattern** | **Node ID** |
 |:-------------| :------------:|
 | AAAA | 0 |
