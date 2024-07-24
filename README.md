@@ -113,7 +113,7 @@ sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTC
 ...
 ...
 spsN	GAACTGAGTACTGATACTGATTAGGTTCCTT
-
+```
 ```
 -----------example_MSA_with_pop_level.phy-----------------------------------------------------------------------------------
 sps1_pop1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
