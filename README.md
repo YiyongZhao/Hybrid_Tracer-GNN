@@ -105,7 +105,7 @@ The **graph_1** keys have edge list values which descibe the connectivity struct
 
 If you want to quickly start, place your files with the ".phy" extension into the "phy" folder. Format your ".phy" files as shown in the following example. Please note that the length of sequence names can vary, and each line must be arranged in the format of : "sequence name" + "\t" + "sequence". Each sequence must have the same length.
 ```
------------MSA.phy-----------------------------------------------------------------------------------
+-----------example_MSA_with_sps_level.phy-----------------------------------------------------------------------------------
 sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
 sps2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
 sps3	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
@@ -115,7 +115,18 @@ sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTC
 spsN	GAACTGAGTACTGATACTGATTAGGTTCCTT
 
 ```
+-----------example_MSA_with_pop_level.phy-----------------------------------------------------------------------------------
+sps1_pop1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
+sps1_pop2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
+sps3_pop1	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
+sps4_pop1	GAC-TTAGTACTGATAC-ATTAGGTTTCCTC
+sps4_pop2	GAC-TTAGTACAGATAC-ATTAGGTTTCCTC
+sps4_pop3	GAC-TTAGTACTGGTAC-ATTAGGTTTCCTC
+...
+...
+spsN_pop1	GAACTGAGTACTGATACTGATTAGGTTCCTT
 
+```
 
 ### Examples
 <p align="justify">
