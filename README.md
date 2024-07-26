@@ -100,8 +100,6 @@ Every JSON file has the following key-value structure:
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is hybrid attribute value, in our example 2 = Hybird, 4 = Admixture, 6 = Admix with gene flow, 8 = No hybird.</p>
 
 ### Example input format of multiple sequence alignment
-The [PHYLIP](https://www.phylo.org/index.php/help/phylip)  (Phylogeny Inference Package) format is a widely used text format for storing multiple sequence alignments in bioinformatics. To get started quickly, place your MSA file phylip with the ".phy" extension into the "phy" folder. Format your ".phy" file as shown in the following example: for each speciese you can concatnated many orthologous coding gene into a supermatrix with phylip format. Inadditionaly, you can also convert the VCF file to a a supermatrix with phylip forma from geomics DNA data in individule level after refernce geenome alignemnt by aligneer such as GATK. Ideally, the lenggth of this supermatrix alignet should  longer than 50,000 for get enouth power for get a singenficane for inference by [HyDe](https://github.com/pblischak/HyDe) previous phylogenetic invariants arising under the coalescent model with hybridization. 
-
 The [PHYLIP](https://www.phylo.org/index.php/help/phylip) (Phylogeny Inference Package) format is a widely used text format for storing multiple sequence alignments in bioinformatics. To get started quickly, place your MSA file with the ".phy" extension into the "phy" folder. Format your ".phy" file as shown in the following example: for each species, you can concatenate many orthologous coding genes into a supermatrix with the PHYLIP format. Additionally, you can convert a VCF file to a supermatrix in PHYLIP format from genomic DNA data at the individual level after reference genome alignment using aligners such as [GATK](https://gatk.broadinstitute.org/hc/en-us). Ideally, the length of this supermatrix alignment should be longer than 50,000 base pairs to provide sufficient power for significant inference. Note that the length of sequence names can vary, but each line must be arranged in the format: "sequence name" + "\t" + "sequence". Additionally, each sequence must have the same length.
 
 ```
@@ -206,7 +204,6 @@ Please **note that the trainset and testset folder must end with "/" !**
 ### Output
 <p align="justify">
 The output files default to being saved in the "outputfiles" folder, which records the probabilities of hybridization, admixture, admixture with gene flow, and no hybridization events. In cases where hybridization occurs, an additional "*_gamma.log" files are generated, containing records of gamma values.
-
 
 ## Bug Reports
 You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/HybridTracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
