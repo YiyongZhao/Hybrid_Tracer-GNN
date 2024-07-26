@@ -119,31 +119,48 @@ To get started quickly, follow these steps:
 3. **Supermatrix Length**:
    Ideally, the length of an input supermatrix alignment should be longer than 50,000 base pairs to provide sufficient power for significant inference, as estimated by previous phylogenetic invariants arising under the coalescent model with hybridization, using [HyDe](https://github.com/pblischak/HyDe).
 
-### Example PHYLIP File Format
+### Example Supermatrix with PHYLIP File Format
 ```
 -----------example_MSA_with_sps_level.phy-----------------------------------------------------------------------------------
-sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
-sps2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
-sps3	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
-sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTC
+sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTCCTCTGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTTGAC-TTAGTACTGA-ACTGA--AGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps3	GAC-TTAGT-CTGATACTGATGAGGTTCCTTGAC-TTAGTACTGA-ACTGA--AGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps4	GAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTTGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
 ...
 ...
 spsN	GAACTGAGTACTGATACTGATTAGGTTCCTT
 ```
 ```
 -----------example_MSA_with_pop_level.phy-----------------------------------------------------------------------------------
-sps1_pop1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
-sps1_pop2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTT
-sps3_pop1	GAC-TTAGT-CTGATACTGATGAGGTTCCTT
-sps4_pop1	GAC-TTAGTACTGATAC-ATTAGGTTTCCTC
-sps4_pop2	GAC-TTAGTACAGATAC-ATTAGGTTTCCTC
-sps4_pop3	GAC-TTAGTACTGGTAC-ATTAGGTTTCCTC
+sps1_pop1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTTGAC-TTAGTACTGA-ACTGA--AGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps1_pop2	GAC-TTAGTACTGA-ACTGA--AGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps3_pop1	GAC-TTAGT-CTGATACTGATGAGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTCCTCGAC-TTAGTACTGA-ACTGA--AGGTTCCTTT
+sps4_pop1	GAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAGTACAGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTTCCTC
+sps4_pop2	GAC-TTAGTACAGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAGTACAGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-ATTAGGTTTCCTC
+sps4_pop3	GAC-TTAGTACTGGTAC-ATTAGGTTTCCTCGAC-TTAGT-CTGATACTGATGAGGTTCCTTGAC-TTAGTACTGAC-TTAGTACAGATAC-ATTAGGTTTCCTCGAC-TTAGTACTGATAC-A
 ...
 ...
 spsN_pop1	GAACTGAGTACTGATACTGATTAGGTTCCTT
 
 ```
 Note that the length of sequence names can vary, but each line must be arranged in the format: "sequence name" + "\t" + "sequence". Additionally, each sequence must have the same length.
+
+#### How to concatenated orthologous multiple sequnce alignet (each sample with single copy gene) into a supermatirx with phylip format, we provdie a python scirpt: concat_msa.py
+
+Place your fasta multiple sequence alignment files with extensions .fas, .fa, or .fasta into a directory, e.g., MSA_dir. Run the script as follows:
+This script processes `.fas`, `.fasta`, or `.fa` files in a specified directory and concatenates them into a supermatrix in PHYLIP format. The output file is saved in the current working directory.
+
+#### Usage
+
+```
+python concat_msa.py <dir>
+```
+Example
+```
+python concat_msa.py MSA_dir
+```
+The script will generate a concatenated supermatrix in PHYLIP format and save it in the current directory. The output filename will follow the format: <number_of_samples>samples_<number_of_genes>genes_<sequence_length>bp_concatenate.phy.
+
 ### Examples
 <p align="justify">
 To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
