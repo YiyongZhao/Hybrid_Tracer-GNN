@@ -99,9 +99,27 @@ Every JSON file has the following key-value structure:
 <p align="justify">
 The **graph_1** keys have edge list values which descibe the connectivity structure. Similarly, the **labels_1** keys have labels for each node which are stored as list - positions in the list correspond to node identifiers. The **ged** key has an integer value which is hybrid attribute value, in our example 2 = Hybird, 4 = Admixture, 6 = Admix with gene flow, 8 = No hybird.</p>
 
-### Example input format of multiple sequence alignment
-The [PHYLIP](https://www.phylo.org/index.php/help/phylip) (Phylogeny Inference Package) format is a widely used text format for storing multiple sequence alignments in bioinformatics. To get started quickly, place your MSA file with the ".phy" extension into the "phy" folder. Format your ".phy" file as shown in the following example: for each species, you can concatenate many orthologous coding genes into a supermatrix with the PHYLIP format. Additionally, you can convert a VCF file to a supermatrix in PHYLIP format from genomic DNA data at the individual level after reference genome alignment using aligners such as [GATK](https://gatk.broadinstitute.org/hc/en-us). Ideally, the length of this supermatrix alignment should be longer than 50,000 base pairs to provide sufficient power for significant inference. Note that the length of sequence names can vary, but each line must be arranged in the format: "sequence name" + "\t" + "sequence". Additionally, each sequence must have the same length.
+### Example Input Format of Multiple Sequence Alignment （MSA）
 
+The [PHYLIP](https://www.phylo.org/index.php/help/phylip) (Phylogeny Inference Package) format is a widely used text format for storing multiple sequence alignments in bioinformatics.
+
+To get started quickly, follow these steps:
+
+1. **Place Your MSA**:
+
+   Place your MSA file with the ".phy" extension into the "phy" folder.
+
+2. **Format Your MSA**:
+
+   Ensure your ".phy" file is formatted as shown in the following example:
+
+   - For each species, you can concatenate many orthologous coding genes into a supermatrix with the PHYLIP format.
+   - Additionally, you can convert a VCF file to a supermatrix in PHYLIP format from genomic DNA data at the individual level after reference genome alignment using aligners such as [GATK](https://gatk.broadinstitute.org/hc/en-us).
+
+3. **Supermatrix Length**:
+   Ideally, the length of an input supermatrix alignment should be longer than 50,000 base pairs to provide sufficient power for significant inference, as estimated by previous phylogenetic invariants arising under the coalescent model with hybridization, using [HyDe](https://github.com/pblischak/HyDe).
+
+### Example PHYLIP File Format
 ```
 -----------example_MSA_with_sps_level.phy-----------------------------------------------------------------------------------
 sps1	GAAGTTAGTA-TGA-ACTGATTAGGTTCCTT
@@ -125,7 +143,7 @@ sps4_pop3	GAC-TTAGTACTGGTAC-ATTAGGTTTCCTC
 spsN_pop1	GAACTGAGTACTGATACTGATTAGGTTCCTT
 
 ```
-
+Note that the length of sequence names can vary, but each line must be arranged in the format: "sequence name" + "\t" + "sequence". Additionally, each sequence must have the same length.
 ### Examples
 <p align="justify">
 To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
