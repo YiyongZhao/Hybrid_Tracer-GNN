@@ -205,8 +205,6 @@ Please **note that the trainset and testset folder must end with "/" !**
 <p align="justify">
 The output files default to being saved in the "outputfiles" folder, which records the probabilities of hybridization, admixture, admixture with gene flow, and no hybridization events. In cases where hybridization occurs, an additional "*_gamma.log" files are generated, containing records of gamma values.
 
-Code Framework Reference: [SimGNN](https://github.com/benedekrozemberczki/SimGNN)
-
 
 ## Bug Reports
 You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/HybridTracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
