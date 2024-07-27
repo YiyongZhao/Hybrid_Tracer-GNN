@@ -13,14 +13,11 @@
   - Xinzheng Du: [duxz@xiaohuafund.com](mailto:duxz@xiaohuafund.com)
   - Yiyong Zhao: [yiyongzhao1991@gmail.com](mailto:yiyongzhao1991@gmail.com)
 
-
-
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 [![Documentation Status](http://readthedocs.org/projects/hybridization-detection/badge/?version=latest)](http://hybridization-detection.readthedocs.io)
 [![HybridTracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/HybridTracer-GNN/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
-
 
 ### Introduction
 HybridTracer-GNN enables the inference of hybrid speciation and admixture using a fast graph neural network. Our work is implemented in PyTorch, utilizing the [SimGNN](https://github.com/benedekrozemberczki/SimGNN) framework for multiple sequence alignment embedding. However, the reference framework is also accessible in a TensorFlow implementation [here](https://github.com/yunshengb/SimGNN), and another implementation is available [here](https://github.com/NightlyJourney/SimGNN) for your information.
