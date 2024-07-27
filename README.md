@@ -1,8 +1,8 @@
-```
-<div align="center">
-  
-# <img src="image/logo.jpg" width="80" height="80" align="center"> HybridTracer-GNN </div> 
 
+<div align="center">
+<img src="image/logo.jpg" width="100" height="100" align="center"> HybridTracer-GNN </div>
+
+```
 ###############################################################################################################################
 
 ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗██████╗ ████████╗██████╗  █████╗  ██████╗███████╗██████╗        ██████╗ ███╗   ██╗███╗   ██╗
