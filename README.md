@@ -151,6 +151,7 @@ python concat_msa.py MSA_dir
 ```
 The script will generate a concatenated supermatrix in PHYLIP format and save it in the current directory. The output filename will follow the format: <number_of_samples>samples_<number_of_genes>genes_<sequence_length>bp_concatenate.phy.
 
+
 ### Examples
 <p align="justify">
 To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
