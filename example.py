@@ -149,7 +149,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
 
     print("GNN ing")
 
-    command = f"python3 src2types/main.py --load-path ./2typesandreal-ind-001-his16-e5-32-512abs.pt  --learning-rate 0.001 --dropout 0.2 --epochs 5 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/2types_indandreal/train/ --testing-graphs {output_dir}/ >{log_dir}/{logname}.log"
+    command = f"python3 src2types/main.py --load-path ./noyeast-2ttrainyeast-indnotknowhyb-001-his16-e5-32-512abs.pt  --learning-rate 0.001 --dropout 0.2 --epochs 5 --batch-size 512  --filters-1 128 --filters-2 64 --filters-3 32 --histogram --bins 16 --training-graphs ./dataset/train/ --testing-graphs {output_dir}/ >{log_dir}/{logname}.log"
     os.system(command)
     print(f'End of generating log {logname}')
 

@@ -251,7 +251,7 @@ class HybGNNTrainer(object):
                 loss = self.loss_sum/main_index
                 epochs.set_description("Epoch (Loss=%g)" % round(loss, 5))
 
-   def score(self):
+    def score(self):
 
         print("\n\nModel evaluation.\n")
 
