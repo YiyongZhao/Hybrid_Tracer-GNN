@@ -19,12 +19,12 @@
 [![HybridTracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/HybridTracer-GNN/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
-<p align="center">
-  <img width="800" src="image/hybgnn.jpg">
-</p>
 
 ### Introduction
 HybridTracer-GNN enables the inference of hybrid speciation and admixture using a fast graph neural network. Our work is implemented in PyTorch, utilizing the [SimGNN](https://github.com/benedekrozemberczki/SimGNN) framework for multiple sequence alignment embedding. However, the reference framework is also accessible in a TensorFlow implementation [here](https://github.com/yunshengb/SimGNN), and another implementation is available [here](https://github.com/NightlyJourney/SimGNN) for your information.
+<p align="center">
+  <img width="800" src="image/hybgnn.jpg">
+</p>
 
 
 ### Clone and install environment:
