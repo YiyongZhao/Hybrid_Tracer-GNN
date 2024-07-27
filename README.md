@@ -1,25 +1,18 @@
-<div align="center">
-  
-#  <img src="image/logo.jpg" width="100" height="100" align="center"> HybridTracer-GNN </div>
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+  <img src="image/logo.jpg" width="90" height="90" alt="HybridTracer-GNN Logo" style="margin-right: 10px;">
+  <h2 style="margin: 0;">HybridTracer-GNN</h2>
+</div>
 
-```
-###############################################################################################################################
 
-██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗██████╗ ████████╗██████╗  █████╗  ██████╗███████╗██████╗        ██████╗ ███╗   ██╗███╗   ██╗
-██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗      ██╔════╝ ████╗  ██║████╗  ██║
-███████║ ╚████╔╝ ██████╔╝██████╔╝██║██║  ██║   ██║   ██████╔╝███████║██║     █████╗  ██████╔╝█████╗██║  ███╗██╔██╗ ██║██╔██╗ ██║
-██╔══██║  ╚██╔╝  ██╔══██╗██╔══██╗██║██║  ██║   ██║   ██╔══██╗██╔══██║██║     ██╔══╝  ██╔══██╗╚════╝██║   ██║██║╚██╗██║██║╚██╗██║
-██║  ██║   ██║   ██████╔╝██║  ██║██║██████╔╝   ██║   ██║  ██║██║  ██║╚██████╗███████╗██║  ██║      ╚██████╔╝██║ ╚████║██║ ╚████║
-╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝                         
-                                                                                                                 
-HybridTracer-GNN enables inference of hybrid speciation and admixture with fast graph neural network.                                                                   
-Pypi: https://pypi.org/project/HybridTracer-GNN                                               
-Github: https://github.com/YiyongZhao/HybridTracer-GNN                                        
-Licence: MIT license                                                                     
-Release Date: 2024-7                                                                     
-Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.com)
-###############################################################################################################################
-```                                                                        
+**HybridTracer-GNN** enables inference of hybrid speciation and admixture with a fast graph neural network.
+
+- **PyPI**: [HybridTracer-GNN](https://pypi.org/project/HybridTracer-GNN)
+- **GitHub**: [HybridTracer-GNN](https://github.com/YiyongZhao/HybridTracer-GNN)
+- **License**: MIT License
+- **Release Date**: July 2024
+- **Contacts**: 
+  - Xinzheng Du: [duxz@xiaohuafund.com](mailto:duxz@xiaohuafund.com)
+  - Yiyong Zhao: [yiyongzhao1991@gmail.com](mailto:yiyongzhao1991@gmail.com)
 
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
@@ -27,13 +20,13 @@ Contacts: Xinzheng Du(duxz@xiaohuafund.com); Yiyong Zhao(yiyongzhao1991@gmail.co
 [![HybridTracer-GNN Issues](https://img.shields.io/badge/HybridTracer--CNN--Issues-blue)](https://github.com/YiyongZhao/HybridTracer-GNN/issues)
 ![Build Status](https://travis-ci.org/YiyongZhao/HybridTracer-GNN.svg?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/HybridTracer-GNN.svg)](https://pypi.python.org/pypi/HybridTracer-GNN)
-<p align="center">
-  <img width="800" src="image/hybgnn.jpg">
-</p>
+
 
 ### Introduction
 HybridTracer-GNN enables the inference of hybrid speciation and admixture using a fast graph neural network. Our work is implemented in PyTorch, utilizing the [SimGNN](https://github.com/benedekrozemberczki/SimGNN) framework for multiple sequence alignment embedding. However, the reference framework is also accessible in a TensorFlow implementation [here](https://github.com/yunshengb/SimGNN), and another implementation is available [here](https://github.com/NightlyJourney/SimGNN) for your information.
-
+<p align="center">
+  <img width="800" src="image/hybgnn.jpg">
+</p>
 
 ### Clone and install environment:
 
