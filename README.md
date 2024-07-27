@@ -3,7 +3,6 @@
   <h2 style="margin: 0;">HybridTracer-GNN</h2>
 </div>
 
-
 **HybridTracer-GNN** enables inference of hybrid speciation and admixture with a fast graph neural network.
 
 - **PyPI**: [HybridTracer-GNN](https://pypi.org/project/HybridTracer-GNN)
@@ -13,6 +12,7 @@
 - **Contacts**: 
   - Xinzheng Du: [duxz@xiaohuafund.com](mailto:duxz@xiaohuafund.com)
   - Yiyong Zhao: [yiyongzhao1991@gmail.com](mailto:yiyongzhao1991@gmail.com)
+
 
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
