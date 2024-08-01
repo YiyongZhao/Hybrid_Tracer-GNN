@@ -5,8 +5,8 @@
 
 **HybridTracer-GNN** enables inference of hybrid speciation and admixture with a fast graph neural network.
 
-- **PyPI**: [HybridTracer-GNN](https://pypi.org/project/HybridTracer-GNN)
-- **GitHub**: [HybridTracer-GNN](https://github.com/YiyongZhao/HybridTracer-GNN)
+- **PyPI**: [HybridTracer-GNN]
+- **GitHub**: [HybridTracer-GNN](https://github.com/YiyongZhao/Hybrid_Tracer-GNN)
 - **License**: MIT License
 - **Release Date**: July 2024
 - **Contacts**: 
@@ -31,10 +31,10 @@ HybridTracer-GNN enables the inference of hybrid speciation and admixture using 
 
 ```bash
 #A convenient one-click installation by using conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) with the following commands:
-git clone https://github.com/YiyongZhao/HybridTracer-GNN.git
-cd HybridTracer-GNN
-conda env create -f environment.yml
-conda activate HybridTracer-GNN
+git clone https://github.com/YiyongZhao/Hybrid_Tracer-GNN.git
+cd Hybrid_Tracer-GNN
+conda env create -f environment.yml # there is no environment.yml file included
+conda activate Hybrid_Tracer-GNN
 
 #Alternatively, a convenient one-click installation by using pip (the package installer for Python) with the following commands:
 chmod +x install_packages.sh
@@ -61,7 +61,7 @@ Python 3.0+
 ### Install from PyPI with pip:
 
 ```bash
-pip install HybridTracer-GNN
+pip install Hybrid_Tracer-GNN # cannot install from PyPI
 ```
 ## Usage 
 ### Datasets for GNN trainning
@@ -72,7 +72,7 @@ pip install HybridTracer-GNN
 | AAAD | 1 |
 | AACA | 2 |
 | AACC | 3 |
-| AABD | 4 |
+| AACD | 4 |
 | ABAA | 5 |
 | ABAB | 6 |
 | ABAD | 7 |
@@ -171,7 +171,7 @@ If you want train your own model:
 The following commands learn a neural network and score on the test set. Training a GNN model on the default dataset.</p>
 
 ```
-python src/main.py
+python src2types/main.py
 ```
 <p align="center">
 <img style="float: center;" src="GNN_run.jpg">
@@ -179,32 +179,32 @@ python src/main.py
 
 Training a GNN model for a 100 epochs with a batch size of 512.
 ```
-python src/main.py --epochs 100 --batch-size 512
+python src4types/main.py --epochs 100 --batch-size 512
 ```
 Training a GNN with histogram features.
 ```
-python src/main.py --histogram
+python src4types/main.py --histogram
 ```
 Training a GNN with histogram features and a large bin number.
 ```
-python src/main.py --histogram --bins 32
+python src4types/main.py --histogram --bins 32
 ```
 Increasing the learning rate and the dropout.
 ```
-python src/main.py --learning-rate 0.01 --dropout 0.9
+python src4types/main.py --learning-rate 0.01 --dropout 0.9
 ```
 You can save the trained model by adding the `--save-path` parameter.
 ```
-python src/main.py --save-path /path/to/model-name
+python src4types/main.py --save-path /path/to/model-name
 ```
 Then you can load a pretrained model using the `--load-path` parameter; **note that the model will be used as-is, no training will be performed**.
 ```
-python src/main.py --load-path /path/to/model-name
+python src4types/main.py --load-path /path/to/model-name
 ```
 
 ### Options
 <p align="justify">
-Training a GNN model is handled by the `src/main.py` script which provides the following command line arguments.</p>
+Training a GNN model is handled by the `src4types/main.py` script which provides the following command line arguments.</p>
 
 #### Input and output options
 ```
@@ -229,16 +229,16 @@ Please **note that the trainset and testset folder must end with "/" !**
 
 ### Output
 <p align="justify">
-The output files default to being saved in the "outputfiles" folder, which records the probabilities of hybridization, admixture, admixture with gene flow, and no hybridization events. In cases where hybridization occurs, an additional "*_gamma.log" files are generated, containing records of gamma values.
+The output files default to being saved in the "output_files" folder, which records the probabilities of hybridization, admixture, admixture with gene flow, and no hybridization events. In cases where hybridization occurs, an additional "*_gamma.log" files are generated, containing records of gamma values.
 
 ## Bug Reports
-You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/HybridTracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
+You can report bugs or request features through our [GitHub Issues page](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/issues). If you have any questions, suggestions, or issues, please do not hesitate to contact us.
 
 ## Contributing
 If you're interested in contributing code or reporting bugs, we welcome your ideas and contributions to improve HybridTracer-GNN! Please check out [Contribution Guidelines](https://docs.github.com/en/issues).
 
 ## Version History
-Check the [Changelog](https://github.com/YiyongZhao/HybridTracer-GNN/commits/HybridTracer-GNN_v1.0.0) for details on different versions and updates.
+Check the [Changelog](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/commits/HybridTracer-GNN_v1.0.0) for details on different versions and updates.
 
 ## License
 HybridTracer-GNN  is licensed under the [MIT LICENSE](LICENSE).
