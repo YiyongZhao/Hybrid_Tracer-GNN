@@ -107,7 +107,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
                             aacc+=1
                 
                         if motif == "AACD":
-                            aabd+=1
+                            aacd+=1
                 
                         if motif == "ABAA":
                             abaa+=1
