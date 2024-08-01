@@ -43,7 +43,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
                     spe4 = [3]
 
 
-                    aaaa, aaad, aaca, aacc, aabd, abaa, abab, abad, abba, abbb, abbd, abca, abcb, abcc, abcd=0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    aaaa, aaad, aaca, aacc, aacd, abaa, abab, abad, abba, abbb, abbd, abca, abcb, abcc, abcd=0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                
                 
                     for i in range(0, len(lines_json[0].strip())-(2*K+D)+1):
@@ -106,7 +106,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
                         if motif == "AACC":
                             aacc+=1
                 
-                        if motif == "AABD":
+                        if motif == "AACD":
                             aabd+=1
                 
                         if motif == "ABAA":
@@ -140,7 +140,7 @@ def chunk_gen_json_GNN(input_file, output_dir, logname, log_dir):
                             abcd+=1
                                  
                 
-                    feature_1=[aaaa, aaad, aaca, aacc, aabd, abaa, abab, abad, abba, abbb, abbd, abca, abcb, abcc, abcd]
+                    feature_1=[aaaa, aaad, aaca, aacc, aacd, abaa, abab, abad, abba, abbb, abbd, abca, abcb, abcc, abcd]
 
                     data = {"graph_1": edge_1,"ged": 2, "labels_1": feature_1}
                 
