@@ -5,8 +5,8 @@
 
 **HybridTracer-GNN** enables inference of hybrid speciation and admixture with a fast graph neural network.
 
-- **PyPI**: [HybridTracer-GNN]
-- **GitHub**: [HybridTracer-GNN](https://github.com/YiyongZhao/Hybrid_Tracer-GNN)
+- **PyPI**: [Hybrid_Tracer-GNN] no link available
+- **GitHub**: [Hybrid_Tracer-GNN](https://github.com/YiyongZhao/Hybrid_Tracer-GNN)
 - **License**: MIT License
 - **Release Date**: July 2024
 - **Contacts**: 
@@ -157,21 +157,21 @@ The script will generate a concatenated supermatrix in PHYLIP format and save it
 To start it quickly, after input your ".phy" files into "phy" folder, run "example.py".
 
 ```
-python3 example.py
+python example.py
 ```
 
 We **strongly recommend** placing the outgroup as the first line in the ".phy" file if you can identify which one is the outgroup, then run "outgroup.py" instead of running "example.py".
 
 ```
-python3 outgroup.py
+python outgroup.py
 ```
 
 If you want train your own model:
 
-The following commands learn a neural network and score on the test set. Training a GNN model on the default dataset.</p>
+The following commands learn a neural network and score on the test set. Training a GNN model on the default dataset (no "GNN_run.jpg").</p>
 
 ```
-python src2types/main.py
+python src4types/main.py
 ```
 <p align="center">
 <img style="float: center;" src="GNN_run.jpg">
