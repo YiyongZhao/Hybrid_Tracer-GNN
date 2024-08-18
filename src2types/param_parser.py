@@ -19,6 +19,11 @@ def parameter_parser():
                         type=int,
                         default=5,
 	                help="Number of training epochs. Default is 5.")
+    
+    parser.add_argument("--embed-dim",
+                        type=int,
+                        default=512,
+                    help="Embedding size. Default is 64.")
 
     parser.add_argument("--filters-1",
                         type=int,
