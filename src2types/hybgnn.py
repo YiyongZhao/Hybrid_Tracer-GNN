@@ -8,6 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr, kendalltau
 from tqdm import tqdm, trange
+from torch.utils.data import Dataset, DataLoader
 from torch_geometric.nn import GCNConv
 from layers import AttentionModule, TenorNetworkModule
 from utils import process_pair, calculate_loss, calculate_normalized_ged
@@ -29,6 +30,7 @@ class HybGNN(torch.nn.Module):
         super(HybGNN, self).__init__()
         self.args = args
         self.embed_dim = embed_dim
+        self.criterion = torch.nn.CrossEntropyLoss()
         self.setup_layers()
 
     def calculate_bottleneck_features(self):
@@ -39,63 +41,101 @@ class HybGNN(torch.nn.Module):
             self.feature_count = self.args.filters_3
 
     def setup_layers(self):
-
         self.calculate_bottleneck_features()
         self.embedding = torch.nn.Sequential(
             torch.nn.Linear(1, self.embed_dim),
-            torch.nn.ReLU(),
+            torch.nn.LeakyReLU(),
             torch.nn.Linear(self.embed_dim, self.embed_dim),
-            torch.nn.ReLU(),
+            torch.nn.LeakyReLU(),
             torch.nn.Linear(self.embed_dim, self.embed_dim),
-            torch.nn.ReLU(),
         )
-        self.convolution_1 = GCNConv(
-            self.embed_dim, self.args.filters_1).to(device)
-        self.convolution_2 = GCNConv(
-            self.args.filters_1, self.args.filters_2).to(device)
-        self.convolution_3 = GCNConv(
-            self.args.filters_2, self.args.filters_3).to(device)
-        self.attention = AttentionModule(self.args).to(device)
-        self.fully_connected_first = torch.nn.Linear(self.feature_count,
-                                                     self.args.bottle_neck_neurons).to(device)
-        self.scoring_layer = torch.nn.Linear(
-            self.args.bottle_neck_neurons, 3).to(device)
+        self.position_embedding = torch.nn.Parameter(torch.randn(15, self.embed_dim))
+        
+        # 添加BatchNorm层
+        self.bn1 = torch.nn.BatchNorm1d(self.embed_dim)
+        self.bn2 = torch.nn.BatchNorm1d(self.args.filters_1)
+        self.bn3 = torch.nn.BatchNorm1d(self.args.filters_2)
+        
+        self.convolution_1 = GCNConv(self.embed_dim, self.args.filters_1)
+        self.convolution_2 = GCNConv(self.args.filters_1, self.args.filters_2)
+        self.convolution_3 = GCNConv(self.args.filters_2, self.args.filters_3)
+        self.attention = AttentionModule(self.args)
+        self.fully_connected_first = torch.nn.Linear(self.feature_count, self.args.bottle_neck_neurons)
+        self.scoring_layer = torch.nn.Linear(self.args.bottle_neck_neurons, 2)
 
     def calculate_histogram(self, abstract_features_1, abstract_features_2):
-
-        scores = torch.mm(abstract_features_1,
-                          abstract_features_2).detach().to(device)
+        scores = torch.mm(abstract_features_1, abstract_features_2).detach().to(device)
         scores = scores.view(-1, 1).to(device)
-        hist = torch.histc(scores, bins=self.args.bins).to(device)
-        hist = hist/torch.sum(hist).to(device)
+        
+        # print("scores shape:", scores.shape)
+        # print("scores:", scores)
+        
+        # 检查 scores 的最大值和最小值
+        min_val = torch.min(scores)
+        max_val = torch.max(scores)
+
+        # 如果最大值不大于最小值，调整 scores 的值
+        if max_val <= min_val:
+            max_val = min_val * 1.01  # 增加偏移量到 1e-3
+            print(f"Adjusted max_val: {max_val}, min_val: {min_val}")
+
+        hist = torch.histc(scores, bins=self.args.bins, min=min_val.item(), max=max_val.item()).to(device)
+        hist = hist / torch.sum(hist).to(device)
         hist = hist.view(1, -1).to(device)
         return hist
 
     def convolutional_pass(self, edge_index, features):
+        # print("features shape:", features.shape)
         features = self.embedding(features).to(device)
+        # print("features1 shape:", features.shape)
+        # print("features1:", features)
+        features = features + self.position_embedding.to(device)
+        # print("features2 shape:", features.shape)
+        # print("features2:", features)
+        # features = self.bn1(features).to(device)
+        # print("features3 shape:", features.shape)
+        # print("features3:", features)
         features = self.convolution_1(features, edge_index).to(device)
+        # print("features4 shape:", features.shape)
+        # print("features4:", features)
         features = torch.nn.functional.relu(features).to(device)
         features = torch.nn.functional.dropout(features,
                                                p=self.args.dropout,
                                                training=self.training).to(device)
-
+        #features = self.bn2(features).to(device)
         features = self.convolution_2(features, edge_index).to(device)
+        # print("features5 shape:", features.shape)
+        # print("features5:", features)
         features = torch.nn.functional.relu(features).to(device)
         features = torch.nn.functional.dropout(features,
                                                p=self.args.dropout,
                                                training=self.training).to(device)
-
+        # features = self.bn3(features).to(device)
         features = self.convolution_3(features, edge_index).to(device)
+        # print("features6 shape:", features.shape)
+        # print("features6:", features)
         return features
 
     def forward(self, data):
 
-        edge_index_1 = data["edge_index_1"]
+        edge_index = data["edge_index_1"].to(device)
 
-        features_1 = data["features_1"].unsqueeze(1)
+        feature = data["features_1"].unsqueeze(1).to(device)
+        
+        # print("feature shape:", feature.shape)
+        # print("feature:", feature)
+        
+        # print("edge_index shape:", edge_index.shape)
+        # print("edge_index:", edge_index)
+        
+        target = data["target"].to(device)
+        target = torch.argmax(target, dim=0)  # 将one-hot转换为类索引
 
         abstract_features_1 = self.convolutional_pass(
-            edge_index_1, features_1).to(device)
+            edge_index, feature).to(device)
+        
+        # print("abstract_features_1 shape:", abstract_features_1.shape)
+        # print("abstract_features_1:", abstract_features_1)
 
         if self.args.histogram == True:
 
@@ -112,10 +152,11 @@ class HybGNN(torch.nn.Module):
         scores = torch.nn.functional.relu(
             self.fully_connected_first(scores)).to(device)
         
-        score = torch.softmax(self.scoring_layer(scores),dim=1).to(device)
+        scores = self.scoring_layer(scores).to(device).squeeze(0)
+        
+        loss = self.criterion(scores.unsqueeze(0), target.unsqueeze(0)).to(device)
 
-        return score
-
+        return loss, scores
 
 class HybGNNTrainer(object):
 
@@ -133,6 +174,7 @@ class HybGNNTrainer(object):
         print("\nEnumerating unique labels.\n")
         self.training_graphs = glob.glob(self.args.training_graphs + "*.json")
         self.testing_graphs = glob.glob(self.args.testing_graphs + "*.json")
+        
         
         print("Training graphs:", len(self.training_graphs))
         print("Testing graphs:", len(self.testing_graphs))
@@ -156,13 +198,18 @@ class HybGNNTrainer(object):
 
         # print("number_of_labels", self.number_of_labels)
 
-    def create_batches(self):
+    def create_batches(self, train=True):
+        
+        if train:
+            graphs = self.training_graphs
+        else:
+            graphs = self.testing_graphs
 
-        random.shuffle(self.training_graphs)
+        random.shuffle(graphs)
         batches = []
-        for graph in range(0, len(self.training_graphs), self.args.batch_size):
+        for graph in range(0, len(graphs), self.args.batch_size):
             batches.append(
-                self.training_graphs[graph:graph+self.args.batch_size])
+                graphs[graph:graph+self.args.batch_size])
         return batches
 
     def transfer_testset_to_torch(self, testdata):
@@ -171,14 +218,14 @@ class HybGNNTrainer(object):
         edges_1 = torch.from_numpy(np.array(edges_1, dtype=np.int64).T).type(torch.long).to(device)
         
         features_1 = testdata["labels_1"]
-        features_1 = torch.FloatTensor(np.array(features_1)).to(device)
-        features_1 = features_1/features_1.sum(dim=0, keepdim=True) # normalize features
+        features_1 = torch.tensor(np.array(features_1), dtype=torch.float32).to(device)
+        # features_1 = torch.nn.functional.normalize(features_1, p=2, dim=0).to(device)
         
         labels_1 = LABELS[testdata["ged"]]
         labels_1 = torch.tensor(labels_1).to(device)
-        labels_1 = torch.nn.functional.one_hot(labels_1, num_classes=3).float().to(device)
+        labels_1 = torch.nn.functional.one_hot(labels_1, num_classes=2).float().to(device)
         
-        print(f"input dim: edges_1: {edges_1.shape}, features_1: {features_1.shape}, labels_1: {labels_1.shape}")
+        # print(f"input dim: edges_1: {edges_1.shape}, features_1: {features_1.shape}, labels_1: {labels_1.shape}")
         
         new_testdata = dict()
         new_testdata["edge_index_1"] = edges_1
@@ -189,17 +236,18 @@ class HybGNNTrainer(object):
 
     def transfer_trainset_to_torch(self, traindata):
         edges_1 = traindata["graph_1"] + [[y, x] for x, y in traindata["graph_1"]]
-        edges_1 = torch.from_numpy(np.array(edges_1, dtype=np.int64).T).type(torch.long).to(device)
+        edges_1 = np.array(edges_1, dtype=np.int64).T
+        edges_1 = torch.tensor(edges_1, dtype=torch.long).to(device)
 
         features_1 = traindata["labels_1"]
-        features_1 = torch.FloatTensor(np.array(features_1)).to(device)
-        features_1 = features_1/features_1.sum(dim=0, keepdim=True) # normalize features
+        features_1 = torch.tensor(np.array(features_1), dtype=torch.float32).to(device)
+        # features_1 = torch.nn.functional.normalize(features_1, p=2, dim=0).to(device)
         
         labels_1 = LABELS[traindata["ged"]]
         labels_1 = torch.tensor(labels_1).to(device)
-        labels_1 = torch.nn.functional.one_hot(labels_1, num_classes=3).float().to(device)
+        labels_1 = torch.nn.functional.one_hot(labels_1, num_classes=2).float().to(device)
         
-        print(f"input dim: edges_1: {edges_1.shape}, features_1: {features_1.shape}, labels_1: {labels_1.shape}")
+        # print(f"input dim: edges_1: {edges_1.shape}, features_1: {features_1.shape}, labels_1: {labels_1.shape}")
         
         new_traindata = dict()
         new_traindata["edge_index_1"] = edges_1
@@ -209,7 +257,6 @@ class HybGNNTrainer(object):
         return new_traindata
 
     def process_batch(self, batch):
-
         self.optimizer.zero_grad()
         losses = 0
         for training_graph in batch:
@@ -217,12 +264,13 @@ class HybGNNTrainer(object):
             traindata = self.transfer_trainset_to_torch(traindata)
             target = traindata["target"]
 
-            prediction = self.model(traindata).to(device)
+            loss, score = self.model(traindata)
+            
+            # print("Prediction:", prediction)
+            # print("Ground truth:", target)
 
-            losses = losses + \
-                torch.nn.functional.mse_loss(
-                    traindata["target"], prediction[0]).to(device)  # prediction -> prediction[0] to fix the warning: Using a target size (torch.Size([1, 1])) that is different to the input size (torch.Size([1])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
-
+            losses = losses + loss
+        
         losses.backward(retain_graph=True)
         self.optimizer.step()
         loss = losses.item()
@@ -232,14 +280,14 @@ class HybGNNTrainer(object):
 
         print("\nModel training.\n")
 
-        self.optimizer = torch.optim.Adam(self.model.parameters(),
+        self.optimizer = torch.optim.AdamW(self.model.parameters(),
                                           lr=self.args.learning_rate,
                                           weight_decay=self.args.weight_decay)
 
         self.model.train().to(device)
         epochs = trange(self.args.epochs, leave=True, desc="Epoch")
         for epoch in epochs:
-            batches = self.create_batches()
+            batches = self.create_batches(train=True)
             self.loss_sum = 0
             main_index = 0
             for index, batch in tqdm(enumerate(batches), total=len(batches), desc="Batches"):
@@ -248,62 +296,113 @@ class HybGNNTrainer(object):
                 self.loss_sum = self.loss_sum + loss_score * len(batch)
                 loss = self.loss_sum/main_index
                 epochs.set_description("Epoch (Loss=%g)" % round(loss, 5))
+              
+    def score(self):  
+        
+        print("\nModel testing.\n")
+        
+        self.model.eval().to(device)
+        
+        batches = self.create_batches(train=False)
+        predictions = []
+        true_labels = []
+        
+        for index, batch in tqdm(enumerate(batches), total=len(batches), desc="Batches"):
+            for testing_graph in batch:
+                testdata = process_pair(testing_graph)
+                testdata = self.transfer_testset_to_torch(testdata)
+                _,prediction = self.model(testdata)
+                predictions.append(prediction.cpu().detach().numpy())
+                true_labels.append(testdata['target'].cpu().detach().numpy())
+        
+        # Convert predictions and true_labels to numpy arrays
+        predictions = np.array(predictions)
+        true_labels = np.array(true_labels)
+        
+        print(f"predictions shape: {predictions.shape}")
+        print(f"true labels shape: {true_labels.shape}")
+        
+        true_labels_class = np.argmax(true_labels, axis=1)
+        predictions_class = np.argmax(predictions, axis=1)
+        
+        # Calculate accuracy
+        acc = accuracy_score(true_labels_class, predictions_class)
+        print(f"Accuracy: {acc:.4f}")
 
-    def score(self):
+        # Calculate F1 score, precision, and recall
+        f1 = f1_score(true_labels_class, predictions_class, average='weighted', zero_division=0)
+        precision = precision_score(true_labels_class, predictions_class, average='weighted', zero_division=0)
+        recall = recall_score(true_labels_class, predictions_class, average='weighted', zero_division=0)
+        
+        # Print F1 score, precision, and recall
+        print(f"F1 Score: {f1:.4f}")
+        print(f"Precision: {precision:.4f}")
+        print(f"Recall: {recall:.4f}")
 
-        print("\n\nModel evaluation.\n")
-        self.model.to(device)
-        self.model.eval()
-        self.scores = []
-        self.ground_truth = []
-        self.predictions = []
-        self.precision = []
-        self.hyb = []
-        self.nohyb = []
-        self.trueTargets = []
-        self.predTargets = []
+        # Check if there is more than one unique class in true_labels
+        if len(np.unique(true_labels_class)) > 1:
+            roc_auc = roc_auc_score(true_labels, predictions, multi_class='ovr')
+            print(f"ROC AUC: {roc_auc:.4f}")
+        else:
+            print("Only one class present in true labels. Skipping ROC AUC calculation.")
 
-        for graph_pair in tqdm(self.testing_graphs):
-            testdata = process_pair(graph_pair)
-            testdata = self.transfer_testset_to_torch(testdata)
-            prediction = self.model(testdata).to(device).squeeze(0)
-            target = testdata['target']
+    
+
+    # def score(self):
+
+    #     print("\n\nModel evaluation.\n")
+    #     self.model.to(device)
+    #     self.model.eval()
+    #     self.scores = []
+    #     self.ground_truth = []
+    #     self.predictions = []
+    #     self.precision = []
+    #     self.hyb = []
+    #     self.nohyb = []
+    #     self.trueTargets = []
+    #     self.predTargets = []
+
+    #     for graph_pair in tqdm(self.testing_graphs):
+    #         testdata = process_pair(graph_pair)
+    #         testdata = self.transfer_testset_to_torch(testdata)
+    #         prediction = self.model(testdata).to(device).squeeze(0)
+    #         target = testdata['target']
             
-            self.ground_truth.append(testdata['target'])
-            self.predictions.append(prediction)
-            self.scores.append(torch.nn.functional.mse_loss(prediction, target).item())
-            self.trueTargets.append(torch.argmax(target).item())
-            self.predTargets.append(torch.argmax(prediction).item())
+    #         self.ground_truth.append(testdata['target'])
+    #         self.predictions.append(prediction)
+    #         self.scores.append(torch.nn.functional.mse_loss(prediction, target).item())
+    #         self.trueTargets.append(torch.argmax(target).item())
+    #         self.predTargets.append(torch.argmax(prediction).item())
 
-            print("Prediction:", torch.argmax(prediction).item())
-            print("Ground truth:", torch.argmax(target).item())
+    #         print("Prediction:", torch.argmax(prediction).item())
+    #         print("Ground truth:", torch.argmax(target).item())
             
-            print("Pred prob:", prediction)
+    #         print("Pred prob:", prediction)
 
-            if torch.argmax(prediction).item() == torch.argmax(target).item():
-                self.precision.append(1)
-            else:
-                self.precision.append(0)
-            if torch.argmax(prediction).item() == 0:
-                self.hyb.append(1)
-            if torch.argmax(prediction).item() == 1:
-                self.nohyb.append(1)
+    #         if torch.argmax(prediction).item() == torch.argmax(target).item():
+    #             self.precision.append(1)
+    #         else:
+    #             self.precision.append(0)
+    #         if torch.argmax(prediction).item() == 0:
+    #             self.hyb.append(1)
+    #         if torch.argmax(prediction).item() == 1:
+    #             self.nohyb.append(1)
 
-        print("\nAccuracy:", np.mean(self.precision))
-        print("Hybrid_count:", len(self.hyb))
-        print("Non-hybrid_count:", len(self.nohyb), "\n")
+    #     print("\nAccuracy:", np.mean(self.precision))
+    #     print("Hybrid_count:", len(self.hyb))
+    #     print("Non-hybrid_count:", len(self.nohyb), "\n")
 
-        # TODO: calculate rho, tau
-        # self.predictions_array = np.array(self.predictions)
-        # self.ground_truth_array = np.array(self.ground_truth)
+    #     # TODO: calculate rho, tau
+    #     # self.predictions_array = np.array(self.predictions)
+    #     # self.ground_truth_array = np.array(self.ground_truth)
 
-        # self.coef_rho, self.p_rho = spearmanr(self.predictions_array, self.ground_truth_array)
-        # self.coef_tau, self.p_tau = kendalltau(self.predictions_array, self.ground_truth_array)
+    #     # self.coef_rho, self.p_rho = spearmanr(self.predictions_array, self.ground_truth_array)
+    #     # self.coef_tau, self.p_tau = kendalltau(self.predictions_array, self.ground_truth_array)
 
-        # print(f"Spearman's rho: {round(self.coef_rho,5)}, p-value: {round(self.p_rho,5)}")
-        # print(f"Kendall's tau: {round(self.coef_tau,5)}, p-value: {round(self.p_tau,5)}")
-        # self.print_evaluation()
-        # self.print_common_metrics()
+    #     # print(f"Spearman's rho: {round(self.coef_rho,5)}, p-value: {round(self.p_rho,5)}")
+    #     # print(f"Kendall's tau: {round(self.coef_tau,5)}, p-value: {round(self.p_tau,5)}")
+    #     # self.print_evaluation()
+    #     # self.print_common_metrics()
 
     def print_evaluation(self):
         norm_ged_mean = np.mean(self.ground_truth)
