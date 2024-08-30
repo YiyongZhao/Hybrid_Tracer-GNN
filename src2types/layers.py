@@ -13,8 +13,8 @@ class AttentionModule(torch.nn.Module):
 
     def setup_weights(self):
 
-        self.weight_matrix = torch.nn.Parameter(torch.Tensor(self.args.filters_3,
-                                                             self.args.filters_3))
+        self.weight_matrix = torch.nn.Parameter(torch.Tensor(self.args.filters_2,
+                                                             self.args.filters_2))
 
     def init_parameters(self):
 
