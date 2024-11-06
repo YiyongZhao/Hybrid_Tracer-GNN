@@ -1,4 +1,4 @@
-## Introduction
+### Introduction
 
 This folder contains scripts for preprocessing MSA sequences to generate input data files (JSON files) for the machine learning model.
 
@@ -10,9 +10,9 @@ To get started quickly, follow these steps:
 
 1. **Place Your MSA**:
    
-   **MSA File**: Place your MSA file with the ".phy" extension in the "phy" folder. Each line in this file should contain a sequence name followed by its corresponding sequence, separated by a "tab" character.
+   **MSA File**: Place your MSA file with the ".phy" extension in the `phy` folder. Each line in this file should contain a sequence name followed by its corresponding sequence, separated by a `tab` character.
 
-   **Map File**: In the same "phy" folder, create a mapping file for each MSA file. The map file should have the same base name as the ".phy" file, ending with "_imap" (e.g., if your MSA file is "example.phy", name the map file "example_imap"). The map file should include the correspondence between sequence names and species names, where each line lists a sequence name followed by the species name, separated by a "tab" character.
+   **Map File**: In the same `phy` folder, create a mapping file for each MSA file. The map file should have the same base name as the ".phy" file, ending with "_imap" (e.g., if your MSA file is `example.phy`, name the map file `example_imap`). The map file should include the correspondence between sequence names and species names, where each line lists a sequence name followed by the species name, separated by a `tab` character.
    ```
    -------------------------example_MSA.phy-----------------------------------------------------------------------------------------
 
@@ -87,7 +87,8 @@ The script will generate a concatenated supermatrix in PHYLIP format and save it
 
 ### Examples
 <p align="justify">
-To start it quickly, after input your ".phy" files and "_imap" files into "phy" folder, run "msa_sitepattern_counter.py".
+
+To start it quickly, after saving your ".phy" files and "_imap" files into `phy` folder, run `msa_sitepattern_counter.py`.
 
 ```
 python seq_processing/msa_sitepattern_counter.py
@@ -103,6 +104,7 @@ python seq_processing/msa_sitepattern_counter.py --num_cores 4
 
 ### Options
 <p align="justify">
+
 The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepattern_counter.py` script which provides the following command line arguments.</p>
 
 ```
@@ -116,35 +118,44 @@ The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepat
 ```
 
 ### Outputs
-**JSON files**: The output JSON files that contains the following content will be saved in the specified output folder:
-```
+**JSON files**: The output JSON files that has the following structure will be saved in the specified output folder:
+```javascript
 {
     "ged": 2 or 8, 
-    # The Hybrid (2) or Non-hybrid (8) label of the quartet sequences, determined by program [HyDe](https://github.com/pblischak/HyDe).
+    // The Hybrid (2) or Non-hybrid (8) label of the quartet sequences, determined by program [HyDe](https://github.com/pblischak/HyDe).
 
-    "labels_1": [], 
-    # A list of 15 non-negative real numbers for the counts of 15 site patterns, output by program [HyDe](https://github.com/pblischak/HyDe).
+    "labels_1": [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15], 
+    // A list of 15 non-negative real numbers for the counts of 15 site patterns, output by program [HyDe](https://github.com/pblischak/HyDe).
 
-    "labels_2": [], 
-    # A list of 256 non-negative real numbers representing the counts of 256 site patterns, combining counts for cases with ignored nucleotides and counts for cases with only "ATCGUatcgu" nucleotides.
+    "labels_2": [256, 256, 256, ..., 256, 256, 256], 
+    // A list of 256 non-negative real numbers representing the counts of 256 site patterns, combining counts for cases with ignored nucleotides and counts for cases with only "ATCGUatcgu" nucleotides.
 
-    "labels_3": [[]], 
-    # A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (combining counts for cases with ignored nucleotides and counts for cases with only "ATCGUatcgu" nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
+    "labels_3": [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 ...
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]], 
+    // A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (combining counts for cases with ignored nucleotides and counts for cases with only "ATCGUatcgu" nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
 
-    "labels_4": [], 
-    # A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with ignored nucleotides.
+    "labels_4": [256, 256, 256, ..., 256, 256, 256], 
+    // A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with ignored nucleotides.
 
-    "labels_5": [], 
-    # A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with with "ATCGUatcgu" nucleotides.
+    "labels_5": [256, 256, 256, ..., 256, 256, 256], 
+    // A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with with "ATCGUatcgu" nucleotides.
 
-    "labels_6": [[]], 
-    # A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (only counts for cases with ignored nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
+    "labels_6": [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 ...
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]], 
+    // A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (only counts for cases with ignored nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
 
-    "labels_7": [[]], 
-    # A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (only counts for cases with "ATCGUatcgu" nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
+    "labels_7": [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                 ...
+                 [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]], 
+    // A list of lists containing counts of 15 k-mer site patterns for each combination of values in "kmer_range" and "depth_range" (only counts for cases with "ATCGUatcgu" nucleotides). The total number of count lists is len(kmer_range) * len(depth_range).
 
-    "labels_8": [],
-    # A list of 15 non-negative real numbers for the counts of 15 k-mer site patterns when k = 4 and d = 3.
+    "labels_8": [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+    // A list of 15 non-negative real numbers for the counts of 15 k-mer site patterns when k = 4 and d = 3.
 }
 ```
 **HyDe outputs**: The HyDe outputs from "run_hyde.py" and "individual_hyde.py" will be saved in the current working directory.
