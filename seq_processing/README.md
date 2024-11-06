@@ -88,7 +88,7 @@ The script will generate a concatenated supermatrix in PHYLIP format and save it
 ### Examples
 <p align="justify">
 
-To start it quickly, after saving your ".phy" files and "_imap" files into `phy` folder, run `msa_sitepattern_counter.py`.
+To start it quickly, after saving your ".phy" files and "_imap" files into `phy` folder, run [``msa_sitepattern_counter.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/seq_processing/msa_sitepattern_counter.py).
 
 ```
 python seq_processing/msa_sitepattern_counter.py
