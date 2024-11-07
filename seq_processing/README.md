@@ -38,7 +38,7 @@ To get started quickly, follow these steps:
 
 2. **Format Your MSA**:
 
-   Ensure your ".phy" file is formatted as shown in the following example:
+   Ensure your `.phy` file is formatted as shown in the following example:
 
    - For each species, you can concatenate many orthologous coding genes into a supermatrix with the PHYLIP format.
    - Additionally, you can convert a VCF file to a supermatrix in PHYLIP format from genomic DNA data at the individual level after reference genome alignment using aligners such as [GATK](https://gatk.broadinstitute.org/hc/en-us).
@@ -74,7 +74,7 @@ spsN_pop1	GAACTGAGTACTGATACTGATTAGGTTCCTTGAC-TTAGTACTGATAC-ATTAGGTTTCCTCGAC-TTAG
 ```
 Note that the length of sequence names can vary, but each line must be arranged in the format: "sequence name" + "\t" + "sequence". Additionally, each sequence must have the same length.
 
-How to concatenated orthologous multiple sequnce alignet (each sample with single copy gene) into a supermatirx with phylip format, we provdie a python scirpt:  [``concat_msa.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/concat_msa.py)
+How to concatenated orthologous multiple sequences alignment (each sample with single copy gene) into a supermatrix with phylip format, we provide a python script:  [``concat_msa.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/concat_msa.py)
 
 Place your fasta multiple sequence alignment files with extensions .fas, .fa, or .fasta into a directory, e.g., MSA_dir. Run the script as follows:
 This script processes `.fas`, `.fasta`, or `.fa` files in a specified directory and concatenates them into a supermatrix in PHYLIP format. The output file is saved in the current working directory.
@@ -85,15 +85,15 @@ python concat_msa.py MSA_dir
 The script will generate a concatenated supermatrix in PHYLIP format and save it in the current directory. The output filename will follow the format: <number_of_samples>samples_<number_of_genes>genes_<sequence_length>bp_concatenate.phy.
 
 
-### Examples
+### Examples of using `msa_sitepattern_count.py` to process MSA
 <p align="justify">
 
-To start it quickly, after saving your ".phy" files and "_imap" files into `phy` folder, run [``msa_sitepattern_counter.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/seq_processing/msa_sitepattern_counter.py).
+To start it quickly, after saving your `.phy` files and `_imap` files into `phy` folder, run [``msa_sitepattern_counter.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/seq_processing/msa_sitepattern_counter.py).
 
 ```
 python seq_processing/msa_sitepattern_counter.py
 ```
-To specify outgroup species:
+To specify outgroup species (the specified outgroup will be applied to all `.phy` files in the folder):
 ```
 python seq_processing/msa_sitepattern_counter.py --out_name "Heliconius_hecale_felix"
 ```
@@ -102,7 +102,7 @@ To set the number of CPU cores for parallel calculations (default is None, which
 python seq_processing/msa_sitepattern_counter.py --num_cores 4
 ```
 
-### Options
+### Options for running `msa_sitepattern_count.py`
 <p align="justify">
 
 The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepattern_counter.py` script which provides the following command line arguments.</p>
@@ -117,8 +117,8 @@ The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepat
 --output_folder         (default "output_jsons")-Folder for output JSON files, create folder if not exist
 ```
 
-### Outputs
-**JSON files**: The output JSON files that has the following structure will be saved in the specified output folder:
+### Outputs after running `msa_sitepattern_count.py`
+**JSON files**: The output JSON files that have the following structure will be saved in the specified output folder:
 ```javascript
 {
     "ged": 2 or 8, 
@@ -140,7 +140,7 @@ The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepat
     // A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with ignored nucleotides.
 
     "labels_5": [256, 256, 256, ..., 256, 256, 256], 
-    // A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with with "ATCGUatcgu" nucleotides.
+    // A list of 256 non-negative real numbers representing the counts of 256 site patterns, only counts for cases with "ATCGUatcgu" nucleotides.
 
     "labels_6": [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
@@ -158,4 +158,4 @@ The preprocessing of MSA sequences is handled by the `seq_processing/msa_sitepat
     // A list of 15 non-negative real numbers for the counts of 15 k-mer site patterns when k = 4 and d = 3.
 }
 ```
-**HyDe outputs**: The HyDe outputs from "run_hyde.py" and "individual_hyde.py" will be saved in the current working directory.
+**HyDe outputs**: The HyDe outputs from `run_hyde.py` and `individual_hyde.py` will be saved in the current working directory.
