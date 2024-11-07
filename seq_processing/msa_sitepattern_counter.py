@@ -214,24 +214,10 @@ def obtain_kmer_count(seq_length, outgroups, out_line_idx,combination, K,D,
 						coefficient_product = kmer_motif4[l][1]
 						if combined_str == "AAAA":
 							aaaa1 += coefficient_product
-						elif combined_str == "AAAB":
-							aaad1 += coefficient_product
-						elif combined_str == "AAAC":
-							aaad1 += coefficient_product
 						elif combined_str == "AAAD":
 							aaad1 += coefficient_product
-						elif combined_str == "AABA":
-							aaca1 += coefficient_product
-						elif combined_str == "AABB":
-							aacc1 += coefficient_product
-						elif combined_str == "AABC":
-							aacc1 += coefficient_product
-						elif combined_str == "AABD":
-							aacd1 += coefficient_product
 						elif combined_str == "AACA":
 							aaca1 += coefficient_product
-						elif combined_str == "AACB":
-							aacd1 += coefficient_product
 						elif combined_str == "AACC":
 							aacc1 += coefficient_product
 						elif combined_str == "AACD":
@@ -240,16 +226,12 @@ def obtain_kmer_count(seq_length, outgroups, out_line_idx,combination, K,D,
 							abaa1 += coefficient_product
 						elif combined_str == "ABAB":
 							abab1 += coefficient_product
-						elif combined_str == "ABAC":
-							abad1 += coefficient_product
 						elif combined_str == "ABAD":
 							abad1 += coefficient_product
 						elif combined_str == "ABBA":
 							abba1 += coefficient_product
 						elif combined_str == "ABBB":
 							abbb1 += coefficient_product
-						elif combined_str == "ABBC":
-							abbd1 += coefficient_product
 						elif combined_str == "ABBD":
 							abbd1 += coefficient_product
 						elif combined_str == "ABCA":
@@ -398,6 +380,7 @@ def generate_comb_seq_file(seq_length, outgroups, out_line_idx, combination, spe
 		file_path =phy_file_path
 		each_imap = imap_file_path
 		num_ind = 4
+		outgroup_name = out_name
 	else:
 		if not os.path.exists(f"{file_path}"):
 			with open(file_path, 'w') as output_file:
@@ -412,11 +395,12 @@ def generate_comb_seq_file(seq_length, outgroups, out_line_idx, combination, spe
 				for n in range(len(combination)):
 					output_file.write(f"{combination[n][0]}\tsp{n}\n") 
 					num_ind += 1
+		outgroup_name = "out"
 	if not os.path.exists(f"{file_name}-out.txt"):
-		os.system(f"python3 run_hyde.py -i {file_path} -m {each_imap} -o out -n {num_ind} -t 4 -s {seq_length} --prefix {file_name}")
+		os.system(f"python3 run_hyde.py -i {file_path} -m {each_imap} -o {outgroup_name} -n {num_ind} -t 4 -s {seq_length} --prefix {file_name}")
 	
 	if not os.path.exists(f"{file_name}-out-filtered.txt"):
-		os.system(f"python3 individual_hyde.py -i {file_path} -m {each_imap} -tr {file_name}-out-filtered.txt -o out -n 4 -t 4 -s {seq_length} --prefix {file_name}")
+		os.system(f"python3 individual_hyde.py -i {file_path} -m {each_imap} -tr {file_name}-out-filtered.txt -o {outgroup_name} -n 4 -t 4 -s {seq_length} --prefix {file_name}")
 
 	print(f'Generated file: {file_name}.txt')
 	return file_name, file_path
