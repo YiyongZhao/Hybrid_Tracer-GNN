@@ -85,7 +85,7 @@ python concat_msa.py MSA_dir
 The script will generate a concatenated supermatrix in PHYLIP format and save it in the current directory. The output filename will follow the format: <number_of_samples>samples_<number_of_genes>genes_<sequence_length>bp_concatenate.phy.
 
 
-### Examples of using `msa_sitepattern_count.py` to process MSA
+### Examples of using `msa_sitepattern_count.py` to process MSA in the `phy` folder
 <p align="justify">
 
 To start it quickly, after saving your `.phy` files and `_imap` files into `phy` folder, run [``msa_sitepattern_counter.py``](https://github.com/YiyongZhao/Hybrid_Tracer-GNN/blob/main/seq_processing/msa_sitepattern_counter.py).
