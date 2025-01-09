@@ -1,4 +1,4 @@
-<p style="text-align: center; font-size: 20px; font-weight: bold;">Hybrid Tracer Concatenated CNN</p>
+<h2 align="center" style="font-size: 21px;"><strong>Hybrid Tracer Concatenated CNN</strong></h2>
 
 **Hybrid_Tracer_Concatenated_CNN**: Hybridization Detection using a Concatenated CNN Model and site pattern frequencies.
 
