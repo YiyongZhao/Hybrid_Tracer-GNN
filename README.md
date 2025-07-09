@@ -3,7 +3,7 @@
   <h2 style="margin: 0;">HybridTracer-GNN</h2>
 </div>
 
-**HybridTracer-GNN** enables inference of hybrid speciation and admixture with a fast graph neural network.
+**HybridTracer-CNN** enables inference of hybrid speciation with a deep neural network.
 
 - **PyPI**: [Hybrid_Tracer-GNN] no link available
 - **GitHub**: [Hybrid_Tracer-GNN](https://github.com/YiyongZhao/Hybrid_Tracer-GNN)
